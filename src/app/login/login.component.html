@@ -1,0 +1,71 @@
+<div *ngIf="mostrarPadrao" class="alert-danger">A favor preencher a senha com pelo menos um número um caracter especial e uma letra e deve
+  conter pelo menos 8 caracteres</div>
+  <div class="row">
+    <div class="col"></div>
+    <div class="col">
+      <form #usuarioForm="ngForm" (ngSubmit)="onSubmit($event)">
+        <div class="form-container">
+        <div class="form-group">
+          <label>Usuário *</label>
+          <input #usuarioCampo="ngModel"
+                 type="text"
+                 class="form-control"
+                 id="usuario"
+                 name="usuario"
+                 [(ngModel)]="user.usuario"
+                 required
+          />
+          <div *ngIf="usuarioForm.submitted && usuarioCampo.invalid">
+            <div *ngIf="usuarioCampo.errors?.required" class="alert-danger">Por favor preencher o campo usuário</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Password *</label>
+          <input
+            #senhaCampo="ngModel"
+            type="password"
+            class="form-control"
+            id="senha"
+            name="senha"
+            [(ngModel)]="user.senha"
+            required
+          />
+          <div *ngIf="usuarioForm.submitted && senhaCampo.invalid">
+            <div *ngIf="senhaCampo.errors?.required" class="alert-danger">Por favor preencher o campo senha</div>
+          </div>
+          <div *ngIf="mostrarSenhaConfirmaSenha">
+            <div class="alert-warning">Senhas diferentes</div>
+          </div>
+
+        </div>
+
+
+        <div class="form-group">
+          <label>Confirmação do Password *</label>
+          <input
+            #confirmarSenhaCampo="ngModel"
+            type="password"
+            class="form-control"
+            id="confirmacao-senha"
+            name="confirmacao-senha"
+            [(ngModel)]="user.confirmarSenha"
+            required
+          />
+        </div>
+        <div *ngIf="usuarioForm.submitted && confirmarSenhaCampo.invalid" class="alert-danger">
+          <div *ngIf="confirmarSenhaCampo.errors.required">Por favor preencher o campo de Confirmação de Senha</div>
+        </div>
+        <div *ngIf="mostrarSenhaConfirmaSenha">
+          <div class="alert-warning">Senhas diferentes</div>
+        </div>
+
+        <br>
+        <button type="submit">Registrar</button>
+      </div>
+      </form>
+    </div>
+    <div class="col"></div>
+  </div>
+
+

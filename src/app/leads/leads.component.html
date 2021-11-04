@@ -1,0 +1,91 @@
+<div *ngIf="mostrar" class="alert-success" style="text-align: center">Lead Incluído com sucesso!</div>
+<div *ngIf="mostrarOportunidade" class="alert-warning" style="text-align: center">Selecione pelo menos uma oportunidade!</div>
+
+
+<form #leadForm="ngForm" (ngSubmit)="onSubmit()" class="row">
+  <div class="col">
+  <div class="form-container">
+    <div class="form-group">
+      <label>Nome *</label>
+      <input #nomeCampo="ngModel"
+             type="text"
+             class="form-control"
+             id="nome"
+             name="nome"
+             [(ngModel)]="leads.nome"
+             required
+      />
+      <div *ngIf="leadForm.submitted && nomeCampo.invalid">
+        <div *ngIf="nomeCampo.errors.required" class="alert-danger">Por favor preencher o campo nome</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Telefone *</label>
+      <input
+        #telefoneCampo="ngModel"
+        type="tel"
+        class="form-control"
+        id="telefone"
+        name="telefone"
+        [(ngModel)]="leads.telefone"
+        required
+      />
+      <div *ngIf="leadForm.submitted && telefoneCampo.invalid">
+        <div *ngIf="telefoneCampo.errors.required" class="alert-danger">Por favor preencher o campo telefone</div>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <label>Email *</label>
+      <input
+        #emailCampo="ngModel"
+        type="email"
+        class="form-control"
+        id="email"
+        name="email"
+        [(ngModel)]="leads.email"
+        required
+      />
+      <div *ngIf="leadForm.submitted && emailCampo.invalid" class="alert-danger">
+        <div *ngIf="emailCampo.errors.required">Por favor preencher o campo de Confirmação de email</div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="form-container">
+    <p>Oportunidades *</p>
+    <table class="table table-bordered table-striped">
+      <thead>
+      <tr>
+        <th>
+          <div class="form-check">
+            <input type="checkbox" [(ngModel)]="todosSelecionados" name="todos" (change)="checkUncheckAll()">
+          </div>
+        </th>
+        <th></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr *ngFor="let produto of leads.oportunidades">
+        <td>
+          <div class="form-check">
+            <input type="checkbox" [(ngModel)]="produto.isSelected" name="produto_nome" value="{{produto.id}}" (change)="isSelectedAll()">
+          </div>
+        </td>
+        <td>{{produto.value}}</td>
+      </tr>
+
+      </tbody>
+
+    </table>
+    <button type="submit" [disabled]="leadForm.invalid">Salvar</button>
+    </div>
+  </div>
+
+
+</form>

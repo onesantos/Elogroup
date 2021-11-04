@@ -1,0 +1,54 @@
+<br>
+<br>
+<h1>Painel de Leads</h1>
+<br>
+
+<div class="btn"  routerLink="/leads-new">Novo Lead(+)</div>
+<div class="row">
+
+</div>
+<br>
+<div class="row">
+  <div class="container">
+  <div class="col">
+    <h3>Cliente em Potencial</h3>
+
+    <div
+      cdkDropList
+      #clienteList="cdkDropList"
+      [cdkDropListData]="clienteEmPotencial"
+      [cdkDropListConnectedTo]="[dadosList]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of clienteEmPotencial" cdkDrag>{{item.nome}}</div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>Dados Confirmados</h3>
+
+    <div
+      cdkDropList
+      #dadosList="cdkDropList"
+      [cdkDropListData]="dadosConfirmados"
+      [cdkDropListConnectedTo]="[reuniaoList]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of dadosConfirmados" cdkDrag>{{item.nome}}</div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>Reunião Agendada</h3>
+
+    <div
+      cdkDropList
+      #reuniaoList="cdkDropList"
+      [cdkDropListData]="reuniaoAgenda"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of reuniaoAgenda" cdkDrag>{{item.nome}}</div>
+    </div>
+  </div>
+  </div>
+</div>
