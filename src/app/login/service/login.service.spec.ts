@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
-import {UserFormService} from './login.service';
+
+import { UserFormService } from './login.service';
 
 describe('UserFormService', () => {
     beforeEach(() => TestBed.configureTestingModule({}));

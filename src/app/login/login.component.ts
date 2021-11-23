@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserForm} from './user-form';
+import {UserFormService} from './service/login.service'
 import {Router} from '@angular/router';
 
 @Component({
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
   mostrarPadrao = false;
   mostrarSenhaConfirmaSenha = false;
 
-  constructor(private router: Router) {
+  constructor(private userForm: UserFormService, private router: Router) {
   }
 
   ngOnInit() {
@@ -34,6 +35,7 @@ export class LoginComponent implements OnInit {
       setTimeout(() => this.mostrarPadrao = false, 3000);
       return;
     }
+    this.userForm.save(this.user)
     this.router.navigate(['leads-list']);
 
   }
